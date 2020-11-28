@@ -1,20 +1,20 @@
-﻿@model DemoGestionEmploye.Models.Employee
+﻿@model DemoGestionEmploye.ViewsModels.HomeDetailsViewModel
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
 </head>
 <body>
-    <h3>@ViewBag.TitrePage</h3>
+    <h3>@Model.TitrPage</h3>
 
     <div>
-        Nom : @Model.Name
+        Nom : @Model.Employee.Name
     </div>
     <div>
-        Email : @Model.Email
+        Email : @Model.Employee.Email
     </div>
     <div>
-        Département : @Model.Departement
+        Département : @Model.Employee.Departement
     </div>
 </body>
 </html>

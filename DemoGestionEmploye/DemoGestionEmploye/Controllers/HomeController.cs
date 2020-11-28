@@ -1,4 +1,5 @@
 ﻿using DemoGestionEmploye.Models;
+using DemoGestionEmploye.ViewsModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DemoGestionEmploye.Controllers
@@ -18,9 +19,13 @@ namespace DemoGestionEmploye.Controllers
 
         public ViewResult Details()
         {
-            Employee model = _employeeRepository.GetEmployee(1);
-            ViewBag.TitrePage = "Détails employee";
-            return View(model);
+            HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
+            {
+                Employee = _employeeRepository.GetEmployee(1),
+                TitrPage = "Détails employee"
+            };
+
+            return View(homeDetailsViewModel);
         }
     }
 }
