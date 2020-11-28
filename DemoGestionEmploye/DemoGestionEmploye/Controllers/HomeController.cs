@@ -19,7 +19,9 @@ namespace DemoGestionEmploye.Controllers
         public ViewResult Details()
         {
             Employee model = _employeeRepository.GetEmployee(1);
-            return View("../../MyViews/Test");
+            ViewData["Employee"] = model;
+            ViewData["TitrePage"] = "Détails employee";
+            return View();
         }
     }
 }
