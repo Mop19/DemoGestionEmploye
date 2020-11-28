@@ -12,8 +12,8 @@ namespace DemoGestionEmploye.Models
             _employeeList = new List<Employee>() 
             {
                 new Employee(){ Id = 1, Name = "Mary", Departement = "HR", Email = "mary@mouha.com"},
-                new Employee(){ Id = 1, Name = "John", Departement = "IT", Email = "john@mouha.com"},
-                new Employee(){ Id = 1, Name = "Sam", Departement = "IT", Email = "sam@mouha.com"}
+                new Employee(){ Id = 2, Name = "John", Departement = "IT", Email = "john@mouha.com"},
+                new Employee(){ Id = 3, Name = "Sam", Departement = "IT", Email = "sam@mouha.com"}
             };
         }
 

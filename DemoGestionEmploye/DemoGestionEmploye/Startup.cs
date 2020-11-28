@@ -37,12 +37,17 @@ namespace DemoGestionEmploye
             }
 
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
-
-            app.Run(async (context) =>
+            //app.UseMvcWithDefaultRoute();
+            app.UseMvc(routes =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
+            //app.UseMvc();
+
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync("Hello World!");
+            //});
         }
     }
 }
