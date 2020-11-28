@@ -19,9 +19,8 @@ namespace DemoGestionEmploye.Controllers
         public ViewResult Details()
         {
             Employee model = _employeeRepository.GetEmployee(1);
-            ViewBag.Employee = model;
             ViewBag.TitrePage = "Détails employee";
-            return View();
+            return View(model);
         }
     }
 }

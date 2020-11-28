@@ -1,4 +1,6 @@
-﻿<html xmlns="http://www.w3.org/1999/xhtml">
+﻿@model DemoGestionEmploye.Models.Employee
+
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
 </head>
@@ -6,13 +8,13 @@
     <h3>@ViewBag.TitrePage</h3>
 
     <div>
-        Nom : @ViewBag.Employee.Name
+        Nom : @Model.Name
     </div>
     <div>
-        Email : @ViewBag.Employee.Email
+        Email : @Model.Email
     </div>
     <div>
-        Département : @ViewBag.Employee.Departement
+        Département : @Model.Departement
     </div>
 </body>
 </html>
