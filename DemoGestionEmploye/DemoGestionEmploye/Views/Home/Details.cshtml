@@ -1,20 +1,18 @@
 ﻿@model DemoGestionEmploye.ViewsModels.HomeDetailsViewModel
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-</head>
-<body>
-    <h3>@Model.TitrPage</h3>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Titre = "Détails employé";
+}
 
-    <div>
-        Nom : @Model.Employee.Name
-    </div>
-    <div>
-        Email : @Model.Employee.Email
-    </div>
-    <div>
-        Département : @Model.Employee.Departement
-    </div>
-</body>
-</html>
+<h3>@Model.TitrPage</h3>
+
+<div>
+    Nom : @Model.Employee.Name
+</div>
+<div>
+    Email : @Model.Employee.Email
+</div>
+<div>
+    Département : @Model.Employee.Departement
+</div>
