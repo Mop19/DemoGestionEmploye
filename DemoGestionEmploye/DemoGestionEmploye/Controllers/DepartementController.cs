@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace DemoGestionEmploye.Controllers
 {
-    [Route("[controller]/[action]")]
     public class DepartementsController
     {
         public string List()
