@@ -29,5 +29,10 @@ namespace DemoGestionEmploye.Controllers
 
             return View(homeDetailsViewModel);
         }
+
+        public ViewResult Create()
+        {
+            return View();
+        }
     }
 }
