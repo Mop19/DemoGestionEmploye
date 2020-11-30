@@ -24,6 +24,7 @@ namespace DemoGestionEmploye.Models
             return employee;
         }
 
+      
         public IEnumerable<Employee> GetAllEmployee()
         {
             return _employeeList;
@@ -33,5 +34,28 @@ namespace DemoGestionEmploye.Models
         {
             return _employeeList.FirstOrDefault(e => e.Id == Id);
         }
+
+        public Employee Update(Employee employeeChanges)
+        {
+            var employee = _employeeList.FirstOrDefault(e => e.Id == employeeChanges.Id);
+            if (employee != null)
+            {
+                employee.Name = employeeChanges.Name;
+                employee.Email = employeeChanges.Email;
+                employee.Departement = employeeChanges.Departement;
+            }
+            return employee;
+        }
+
+        public Employee Delete(int id)
+        {
+            var employee = _employeeList.FirstOrDefault(e => e.Id == id);
+            if (employee != null)
+            {
+                _employeeList.Remove(employee);
+            }
+            return employee;
+        }
+
     }
 }
