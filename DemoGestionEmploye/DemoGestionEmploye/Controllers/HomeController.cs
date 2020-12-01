@@ -1,7 +1,6 @@
 ﻿using DemoGestionEmploye.Models;
 using DemoGestionEmploye.ViewsModels;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
@@ -28,9 +27,17 @@ namespace DemoGestionEmploye.Controllers
 
         public ViewResult Details(int? id)
         {
+            Employee employee = _employeeRepository.GetEmployee(id.Value);
+
+            if (employee == null)
+            {
+                Response.StatusCode = 404;
+                return View("EmployeeNotFound", id.Value);
+            }
+
             HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
             {
-                Employee = _employeeRepository.GetEmployee(id??1),
+                Employee = employee,
                 TitrPage = "Détails employee"
             };
 
@@ -65,9 +72,16 @@ namespace DemoGestionEmploye.Controllers
         }
 
         [HttpGet]
-        public ViewResult Edit(int id)
+        public ViewResult Edit(int? id)
         {
-            Employee employee = _employeeRepository.GetEmployee(id);
+            Employee employee = _employeeRepository.GetEmployee(id.Value);
+
+            if (employee == null)
+            {
+                Response.StatusCode = 404;
+                return View("EmployeeNotFound", id.Value);
+            }
+
             EmployeeEditViewModel employeeEditViewModel = new EmployeeEditViewModel
             {
                 Id = employee.Id,
