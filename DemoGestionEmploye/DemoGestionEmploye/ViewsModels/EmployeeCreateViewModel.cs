@@ -17,6 +17,6 @@ namespace DemoGestionEmploye.ViewsModels
         public string Email { get; set; }
         [Required]
         public Dept? Departement { get; set; }
-        public List<IFormFile> Photos { get; set; }
+        public IFormFile Photo { get; set; }
     }
 }
