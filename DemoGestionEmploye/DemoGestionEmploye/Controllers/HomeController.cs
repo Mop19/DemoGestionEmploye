@@ -27,7 +27,7 @@ namespace DemoGestionEmploye.Controllers
 
         public ViewResult Details(int? id)
         {
-            throw new Exception("Erreur...");
+            throw new Exception("Error in Details.cshtml"); 
 
             Employee employee = _employeeRepository.GetEmployee(id.Value);
 
