@@ -1,5 +1,6 @@
 ﻿using DemoGestionEmploye.Models;
 using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DemoGestionEmploye.ViewsModels
@@ -16,6 +17,6 @@ namespace DemoGestionEmploye.ViewsModels
         public string Email { get; set; }
         [Required]
         public Dept? Departement { get; set; }
-        public IFormFile Photo { get; set; }
+        public List<IFormFile> Photos { get; set; }
     }
 }
