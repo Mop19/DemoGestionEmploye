@@ -8,11 +8,11 @@ namespace DemoGestionEmploye.ViewsModels
 {
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "L'email est requis")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Le mot de passe est requis")]
         [DataType(DataType.Password)]
         [Display(Name = "Mot de passe")]
         public string Password { get; set; }
