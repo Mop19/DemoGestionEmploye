@@ -1,5 +1,6 @@
 ﻿using DemoGestionEmploye.Models;
 using DemoGestionEmploye.ViewsModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -8,6 +9,7 @@ using System.IO;
 
 namespace DemoGestionEmploye.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly IEmployeeRepository _employeeRepository;
@@ -23,12 +25,14 @@ namespace DemoGestionEmploye.Controllers
             _logger = logger;
         }
 
+        [AllowAnonymous]
         public ViewResult Index()
         {
             var model = _employeeRepository.GetAllEmployee();
             return View(model);
         }
 
+        [AllowAnonymous]
         public ViewResult Details(int? id)
         {
             _logger.LogTrace("Trace Log");
