@@ -20,6 +20,13 @@ namespace DemoGestionEmploye.Controllers
             _signInManager = signInManager;
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("index", "home");
+        }
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -36,6 +43,7 @@ namespace DemoGestionEmploye.Controllers
                   UserName = model.Email,
                   Email = model.Email
                 };
+
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
