@@ -2,6 +2,7 @@
 using DemoGestionEmploye.ViewsModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
 
@@ -11,12 +12,15 @@ namespace DemoGestionEmploye.Controllers
     {
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly ILogger _logger;
 
         public HomeController(IEmployeeRepository employeeRepository,
-                              IHostingEnvironment hostingEnvironment)
+                              IHostingEnvironment hostingEnvironment,
+                              ILogger<HomeController> logger)
         {
             _employeeRepository = employeeRepository;
             _hostingEnvironment = hostingEnvironment;
+            _logger = logger;
         }
 
         public ViewResult Index()
@@ -27,7 +31,13 @@ namespace DemoGestionEmploye.Controllers
 
         public ViewResult Details(int? id)
         {
-            throw new Exception("Error in Details.cshtml"); 
+            _logger.LogTrace("Trace Log");
+            _logger.LogDebug("Debug Log");
+            _logger.LogInformation("Information Log");
+            _logger.LogWarning("Warning Log");
+            _logger.LogError("Error Log");
+            _logger.LogCritical("Critical Log");
+            //throw new Exception("Error in Details.cshtml"); 
 
             Employee employee = _employeeRepository.GetEmployee(id.Value);
 

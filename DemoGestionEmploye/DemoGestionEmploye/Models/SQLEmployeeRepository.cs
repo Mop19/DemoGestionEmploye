@@ -1,14 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
 namespace DemoGestionEmploye.Models
 {
     public class SQLEmployeeRepository : IEmployeeRepository
     {
         private readonly AppDbContext _context;
+        private readonly ILogger<SQLEmployeeRepository> _logger;
 
-        public SQLEmployeeRepository(AppDbContext context)
+        public SQLEmployeeRepository(AppDbContext context,
+                                     ILogger<SQLEmployeeRepository> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public Employee Add(Employee employee)
@@ -36,6 +40,13 @@ namespace DemoGestionEmploye.Models
 
         public Employee GetEmployee(int Id)
         {
+            _logger.LogTrace("Trace Log");
+            _logger.LogDebug("Debug Log");
+            _logger.LogInformation("Information Log");
+            _logger.LogWarning("Warning Log");
+            _logger.LogError("Error Log");
+            _logger.LogCritical("Critical Log");
+
             return _context.Employees.Find(Id);
         }
 
