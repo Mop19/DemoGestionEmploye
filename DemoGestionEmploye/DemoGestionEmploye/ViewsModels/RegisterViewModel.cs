@@ -27,5 +27,7 @@ namespace DemoGestionEmploye.ViewsModels
         [Compare("Password",
             ErrorMessage = "Le mot de passe et le mot de passe de confirmation ne correspondent pas.")]
         public string ConfirmPassword { get; set; }
+        [Display(Name = "Ville")]
+        public string City { get; set; }
     }
 }
