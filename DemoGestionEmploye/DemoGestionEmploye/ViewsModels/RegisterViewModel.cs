@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DemoGestionEmploye.Utilities;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,6 +12,9 @@ namespace DemoGestionEmploye.ViewsModels
     {
         [Required(ErrorMessage = "L'email est requis")]
         [EmailAddress(ErrorMessage = "S'il vous plait entrer un mot de passe valide")]
+        [Remote(action: "IsEmailInUse", controller:"account")]
+        [ValidEmailDomain(allowedDomain: "mouhatech.com", 
+            ErrorMessage = "Le domaine de l'email doit être mouhatech.com")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Le mot de passe est requis")]
