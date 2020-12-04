@@ -2,7 +2,11 @@
     width: 75px;
 }
 
-.imageThumbnail{
-    height:110px;
-    width:auto;
+.LargeurAutoBouton {
+    width: auto;
+}
+
+.imageThumbnail {
+    height: 110px;
+    width: auto;
 }
