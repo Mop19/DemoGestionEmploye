@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ApplicationUser>
+
+@{
+    ViewBag.Titre = "Tous les utilisateurs";
+}
+
+<h3>Tous les utilisateurs</h3>
+
+@if (Model.Any())
+{
+    <a class="btn btn-primary mb-3 LargeurAutoBouton" asp-action="Register"
+       asp-controller="account">Ajouter un nouveau utilisateur</a>
+
+    foreach (var user in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                Role Id : @user.Id
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@user.UserName</h5>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn btn-primary LargeurAutoBouton" >Modifier</a>
+                <a href="#" class="btn btn-danger LargeurAutoBouton" >Supprimer</a>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            Aucun utilisateur n'est créé pour le moment
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                Utilisez le bouton ci-dessous pour créer un utilisateur
+            </h5>
+            <a class="btn btn-primary LargeurAutoBouton" 
+               asp-controller="account" asp-action="Register">
+                Nouveau Utilisateur
+            </a>
+        </div>
+    </div>
+}
