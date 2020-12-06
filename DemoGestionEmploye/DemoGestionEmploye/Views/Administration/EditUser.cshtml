@@ -38,8 +38,8 @@
 
     <div class="form-group row">
         <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary LargeurAutoBouton">Modifier</button>
-            <a asp-action="ListUsers" class="btn btn-primary LargeurAutoBouton">Annuler</a>
+            <button type="submit" class="btn btn-primary btnlargeurAuto">Modifier</button>
+            <a asp-action="ListUsers" class="btn btn-primary btnlargeurAuto">Annuler</a>
         </div>
     </div>
 
@@ -61,7 +61,7 @@
             }
         </div>
         <div class="card-footer">
-            <a asp-action="ManageUserRoles" asp-route-userId="@Model.Id" class="btn btn-primary LargeurAutoBouton">
+            <a asp-action="ManageUserRoles" asp-route-userId="@Model.Id" class="btn btn-primary btnlargeurAuto">
                 Gestion Rôles
             </a>
         </div>
@@ -85,7 +85,7 @@
             }
         </div>
         <div class="card-footer">
-            <a href="#" class="btn btn-primary LargeurAutoBouton">
+            <a  asp-action="ManageUserClaims" asp-route-userId="@Model.Id" class="btn btn-primary btnlargeurAuto">
                 Gestion Claims
             </a>
         </div>

@@ -25,13 +25,13 @@
                     <a class="btn btn-primary" asp-action="EditRole" asp-controller="administration"
                        asp-route-id="@role.Id" style="width:auto">Modifier</a>
                     <span id="confirmDeleteSpan_@role.Id" style="display:none">
-                        <span>Êtes-vous sûr de vouloir supprimer l'utilisateur?</span>
-                        <button type="submit" class="btn btn-danger LargeurAutoBouton">Oui</button>
+                        <span>Êtes-vous sûr de vouloir supprimer le rôle?</span>
+                        <button type="submit" class="btn btn-danger btnlargeurAuto">Oui</button>
                         <a class="btn btn-primary"
                            onclick="confirmDelete('@role.Id', false)">Non</a>
                     </span>
                     <span id="deleteSpan_@role.Id">
-                        <a class="btn btn-danger LargeurAutoBouton"
+                        <a class="btn btn-danger btnlargeurAuto"
                            onclick="confirmDelete('@role.Id', true)">Supprimer</a>
                     </span>
                 </form>
