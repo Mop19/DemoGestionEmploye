@@ -7,9 +7,9 @@
 <h3>Tous les rôles</h3>
 
 @if (Model.Any())
-{ 
-<a class="btn btn-primary mb-3" style="width:auto" asp-action="CreateRole"
-   asp-controller="administration">Ajouter un nouveau role</a>
+{
+    <a class="btn btn-primary mb-3" style="width:auto" asp-action="CreateRole"
+       asp-controller="administration">Ajouter un nouveau role</a>
 
     foreach (var role in Model)
     {
@@ -21,27 +21,42 @@
                 <h5 class="card-title">@role.Name</h5>
             </div>
             <div class="card-footer">
-                <a class="btn btn-primary" asp-action="EditRole" asp-controller="administration"
-                   asp-route-id="@role.Id" style="width:auto">Modifier</a>
-                <a href="#" class="btn btn-danger" style="width:auto">Supprimer</a>
+                <form asp-action="DeleteRole" asp-route-id="@role.Id" method="post">
+                    <a class="btn btn-primary" asp-action="EditRole" asp-controller="administration"
+                       asp-route-id="@role.Id" style="width:auto">Modifier</a>
+                    <span id="confirmDeleteSpan_@role.Id" style="display:none">
+                        <span>Êtes-vous sûr de vouloir supprimer l'utilisateur?</span>
+                        <button type="submit" class="btn btn-danger LargeurAutoBouton">Oui</button>
+                        <a class="btn btn-primary"
+                           onclick="confirmDelete('@role.Id', false)">Non</a>
+                    </span>
+                    <span id="deleteSpan_@role.Id">
+                        <a class="btn btn-danger LargeurAutoBouton"
+                           onclick="confirmDelete('@role.Id', true)">Supprimer</a>
+                    </span>
+                </form>
             </div>
         </div>
     }
 }
 else
 {
-<div class="card">
-    <div class="card-header">
-        Aucun rôle n'est créé pour le moment
+    <div class="card">
+        <div class="card-header">
+            Aucun rôle n'est créé pour le moment
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                Utilisez le bouton ci-dessous pour créer un rôle
+            </h5>
+            <a class="btn btn-primary" style="width:auto"
+               asp-controller="administration" asp-action="CreateRole">
+                Nouveau Role
+            </a>
+        </div>
     </div>
-    <div class="card-body">
-        <h5 class="card-title">
-            Utilisez le bouton ci-dessous pour créer un rôle
-        </h5>
-        <a class="btn btn-primary" style="width:auto"
-           asp-controller="administration" asp-action="CreateRole">
-            Nouveau Role
-        </a>
-    </div>
-</div>
+}
+
+@section Scripts{
+    <script src="~/js/CustomScript.js"></script>
 }

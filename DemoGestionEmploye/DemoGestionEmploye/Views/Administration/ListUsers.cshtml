@@ -26,11 +26,11 @@
                     <span id="confirmDeleteSpan_@user.Id" style="display:none">
                         <span>Êtes-vous sûr de vouloir supprimer l'utilisateur?</span>
                         <button type="submit" class="btn btn-danger LargeurAutoBouton">Oui</button>
-                        <a href="#" class="btn btn-primary"
+                        <a class="btn btn-primary"
                            onclick="confirmDelete('@user.Id', false)">Non</a>
                     </span>
                     <span id="deleteSpan_@user.Id">
-                        <a href="#" class="btn btn-danger LargeurAutoBouton"
+                        <a class="btn btn-danger LargeurAutoBouton"
                            onclick="confirmDelete('@user.Id', true)">Supprimer</a>
                     </span>
                 </form>
