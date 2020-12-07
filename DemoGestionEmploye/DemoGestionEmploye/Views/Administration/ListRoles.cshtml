@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<IdentityRole>
 
+@using Microsoft.AspNetCore.Authorization
+
+@inject IAuthorizationService authorizationService
+
 @{
     ViewBag.Title = "Liste rôles";
 }
@@ -22,8 +26,15 @@
             </div>
             <div class="card-footer">
                 <form asp-action="DeleteRole" asp-route-id="@role.Id" method="post">
-                    <a class="btn btn-primary" asp-action="EditRole" asp-controller="administration"
-                       asp-route-id="@role.Id" style="width:auto">Modifier</a>
+                    @if ((await authorizationService.AuthorizeAsync(User, "EditRolePolicy")).Succeeded)
+                    {
+                        <a class="btn btn-primary" asp-action="EditRole" asp-controller="administration"
+                           asp-route-id="@role.Id" style="width:auto">
+                           Modifier
+                        </a>
+                    }
+                    
+
                     <span id="confirmDeleteSpan_@role.Id" style="display:none">
                         <span>Êtes-vous sûr de vouloir supprimer le rôle?</span>
                         <button type="submit" class="btn btn-danger btnlargeurAuto">Oui</button>
