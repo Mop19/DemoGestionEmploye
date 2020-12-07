@@ -29,6 +29,8 @@ namespace DemoGestionEmploye.Controllers
             _logger = logger;
         }
 
+     
+
         [HttpGet]
         public async Task<IActionResult> ManageUserClaims(string userId)
         {
@@ -57,7 +59,7 @@ namespace DemoGestionEmploye.Controllers
 
                 // If the user has the claim, set IsSelected property to true, so the checkbox
                 // next to the claim is checked on the UI
-                if (existingUserClaims.Any(c => c.Type == claim.Type))
+                if (existingUserClaims.Any(c => c.Type == claim.Type && c.Value == "true"))
                 {
                     userClaim.IsSelected = true;
                 }
@@ -92,7 +94,7 @@ namespace DemoGestionEmploye.Controllers
 
             // Add all the claims that are selected on the UI
             result = await _userManager.AddClaimsAsync(user,
-                model.Cliams.Where(c => c.IsSelected).Select(c => new Claim(c.ClaimType, c.ClaimType)));
+                model.Cliams.Select(c => new Claim(c.ClaimType, c.IsSelected ? "true" : "false")));
 
             if (!result.Succeeded)
             {
@@ -267,7 +269,7 @@ namespace DemoGestionEmploye.Controllers
                 Email = user.Email,
                 UserName = user.UserName,
                 City = user.City,
-                Claims = userClaims.Select(c => c.Value).ToList(),
+                Claims = userClaims.Select(c => c.Type + " : " + c.Value).ToList(),
                 Roles = userRoles
             };
 
@@ -473,6 +475,13 @@ namespace DemoGestionEmploye.Controllers
             }
 
             return RedirectToAction("EditRole", new { Id = roleId });
-        }   
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
     }
 }

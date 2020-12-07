@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
@@ -41,6 +42,11 @@ namespace DemoGestionEmploye
                 options.Filters.Add(new AuthorizeFilter(policy));
             }).AddXmlSerializerFormatters();
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = new PathString("/Administration/AccessDenied");
+            });
+
             //Claims Policy
             services.AddAuthorization(options =>
             {
@@ -48,7 +54,7 @@ namespace DemoGestionEmploye
                     policy => policy.RequireClaim("Delete Role"));
 
                 options.AddPolicy("EditRolePolicy",
-                   policy => policy.RequireClaim("Edit Role"));
+                   policy => policy.RequireClaim("Edit Role", "true"));
 
                 //Roles Policy
                 options.AddPolicy("AdminRolePolicy",
