@@ -1,4 +1,5 @@
 ﻿using DemoGestionEmploye.Models;
+using DemoGestionEmploye.Security;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -54,7 +55,19 @@ namespace DemoGestionEmploye
                     policy => policy.RequireClaim("Delete Role"));
 
                 options.AddPolicy("EditRolePolicy",
-                   policy => policy.RequireClaim("Edit Role", "true"));
+                   policy => policy.AddRequirements(new ManageAdminRolesAndClaimsRequirement()));
+
+                options.InvokeHandlersAfterFailure = false;
+
+                   //RequireAssertion(context =>
+                   //    context.User.IsInRole("Admin") &&
+                   //    context.User.HasClaim(claim => claim.Type == "Edit Role" && claim.Value == "true") ||
+                   //    context.User.IsInRole("Super Admin")
+                   //)
+                   //.RequireClaim("Edit Role", "true")
+                   //.RequireRole("Admin")
+                   //.RequireRole("Super Admin")
+                   
 
                 //Roles Policy
                 options.AddPolicy("AdminRolePolicy",
@@ -62,6 +75,9 @@ namespace DemoGestionEmploye
             });
 
             services.AddScoped<IEmployeeRepository, SQLEmployeeRepository>();
+
+            services.AddSingleton<IAuthorizationHandler, CanEditOnlyOtherAdminRolesAndClaimsHandler>();
+            services.AddSingleton<IAuthorizationHandler, SuperAdminHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

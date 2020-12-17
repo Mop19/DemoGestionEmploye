@@ -34,7 +34,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <a class="navbar-brand" asp-action="index" asp-controller="home" >
-                <img src="~/images/employees.jpg" height="30" width="30" style="opacity: 0.6;"/>
+                <img src="~/images/employees.png" height="30" width="30" style="opacity: 0.6;"/>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
@@ -47,8 +47,8 @@
                     <li class="nav-item">
                         <a asp-action="Create" asp-controller="home" class="nav-link">Nouveau</a>
                     </li>
-                    @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
-                    {
+                    @*@if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                    {*@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -61,7 +61,7 @@
                                    asp-action="ListRoles">Rôles</a>
                             </div>
                         </li>
-                    }
+                    @*}*@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     @if (signInManager.IsSignedIn(User))
