@@ -43,6 +43,13 @@ namespace DemoGestionEmploye
                 options.Filters.Add(new AuthorizeFilter(policy));
             }).AddXmlSerializerFormatters();
 
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    options.ClientId = "165361927378-5s2ffc6e0jr3armkge4cpf1crvlo0rm8.apps.googleusercontent.com";
+                    options.ClientSecret = "GM-Gipf1Ic-Nydrtd0VVbHVN";
+                });
+
             services.ConfigureApplicationCookie(options =>
             {
                 options.AccessDeniedPath = new PathString("/Administration/AccessDenied");
@@ -55,19 +62,7 @@ namespace DemoGestionEmploye
                     policy => policy.RequireClaim("Delete Role"));
 
                 options.AddPolicy("EditRolePolicy",
-                   policy => policy.AddRequirements(new ManageAdminRolesAndClaimsRequirement()));
-
-                options.InvokeHandlersAfterFailure = false;
-
-                   //RequireAssertion(context =>
-                   //    context.User.IsInRole("Admin") &&
-                   //    context.User.HasClaim(claim => claim.Type == "Edit Role" && claim.Value == "true") ||
-                   //    context.User.IsInRole("Super Admin")
-                   //)
-                   //.RequireClaim("Edit Role", "true")
-                   //.RequireRole("Admin")
-                   //.RequireRole("Super Admin")
-                   
+                    policy => policy.AddRequirements(new ManageAdminRolesAndClaimsRequirement()));      
 
                 //Roles Policy
                 options.AddPolicy("AdminRolePolicy",
