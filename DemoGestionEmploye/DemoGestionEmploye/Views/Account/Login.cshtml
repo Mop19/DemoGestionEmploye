@@ -33,27 +33,27 @@
     </div>
 
     <div class="col-md-6">
-        <h3>Connexion externe</h3>
-        <hr />
-        @{ 
-            if (Model.ExternalLogins.Count == 0)
-            {
-                <div>Il n'y a pas de connexion externe configurée</div>
+            <h3>Connexion externe</h3>
+            <hr />
+            @{
+                if (Model.ExternalLogins.Count == 0)
+                {
+                    <div>Il n'y a pas de connexion externe configurée</div>
+                }
+                else
+                {
+                    <form method="post" asp-action="ExternalLogin" asp-route-returnUrl ="@Model.ReturnUrl">
+                        <div>
+                            @foreach (var provider in Model.ExternalLogins)
+                            {
+                            <button type="submit" class="btn btn-primary btnlargeurAuto"
+                                    value="@provider.Name" name="provider"
+                                    title="Connectez-vous avec @provider.DisplayName de votre compte">@provider.DisplayName</button>
+                            }
+                        </div>
+                    </form>
+                }
             }
-            else
-            {
-                <form method="post" asp-action="ExternalLogin" asp-route-returnUrl ="@Model.ReturnUrl">
-                    <div>
-                        @foreach (var provider in Model.ExternalLogins)
-                        {
-                        <button type="submit" class="btn btn-primary" 
-                                value="@provider.Name" name="provider"
-                                title="Connectez-vous avec @provider.DisplayName de votre compte">@provider.DisplayName</button>
-                        }
-                    </div>
-                </form>
-            }
-        }
-    </div>
+        </div>
 
 </div>

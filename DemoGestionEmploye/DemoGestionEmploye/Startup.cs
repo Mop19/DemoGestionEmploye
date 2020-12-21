@@ -48,6 +48,11 @@ namespace DemoGestionEmploye
                 {
                     options.ClientId = "165361927378-5s2ffc6e0jr3armkge4cpf1crvlo0rm8.apps.googleusercontent.com";
                     options.ClientSecret = "GM-Gipf1Ic-Nydrtd0VVbHVN";
+                })
+                .AddFacebook(options => 
+                {
+                    options.AppId = "400432317701451";
+                    options.AppSecret = "e52eb32f70fea21bda157e6e6389eaee";
                 });
 
             services.ConfigureApplicationCookie(options =>
