@@ -32,8 +32,10 @@ namespace DemoGestionEmploye
             {
                 options.Password.RequiredLength = 10;
                 options.Password.RequiredUniqueChars = 3;
+                options.SignIn.RequireConfirmedEmail = true;
             })
-            .AddEntityFrameworkStores<AppDbContext>();
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddDefaultTokenProviders();
 
             services.AddMvc(options => {
                 //Activer Authorize Attribute Globally

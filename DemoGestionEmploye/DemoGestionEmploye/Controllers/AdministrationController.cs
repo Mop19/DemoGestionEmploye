@@ -238,7 +238,7 @@ namespace DemoGestionEmploye.Controllers
                     _logger.LogError($"Erreur en supprimant le rôle : {ex}");
 
                     @ViewBag.ErrorTitle = $"{role.Name} rôle est utilisé par une autre ressource";
-                    @ViewBag.Message = $"{role.Name} Le rôle ne peut pas être supprimé car il y a des utilisateurs dans ce rôle." +
+                    @ViewBag.ErrorMessage = $"{role.Name} Le rôle ne peut pas être supprimé car il y a des utilisateurs dans ce rôle." +
                         $" Si vous souhaitez supprimer ce rôle, veuillez supprimer les utilisateurs du rôle, puis essayez de supprimer";
                     return View("Error");
                 }
